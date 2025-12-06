@@ -20,9 +20,17 @@ from django.urls import path, include
 # from  website.views import index, sobre, contato
 # ALG: Melhor pratica manda importar include e criar um arquivo urls.py dentro do app
 
+# ALG: Importacao do handler404 para customizar a pagina de erro 404
+from django.conf.urls import handler404, handler500
+from website import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # ALG: Para qualquer requisicao a partir da raiz '', sera redirecionada para o arquivo urls.py do app website
     path('', include('website.urls')),
 
 ]
+
+# ALG: Definicao do handler404 para customizar a pagina de erro 404
+handler404 = views.custom_404_view
+handler500 = views.custom_500_view

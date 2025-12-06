@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from django.conf.global_settings import LOGOUT_REDIRECT_URL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,11 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z#3xfrjmp6=s3kh-pf_wfksrl^58wh%v026z6l!i^1d0mfo^ai'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# ALG: Definicao do nível de debug
+# ALG: Definicao do nível de debug. Signidica que o sistema esta em desenvolvimento. Em producao deve ser False
 DEBUG = True
 
 #  ALG: Definicao dos hosts permitidos. Em caso de debug igual a falso, deve ser definido os hosts permitidos. Ex.: ['meusite.com', 'www.meusite.com', '*']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ALG: Middleware para servir arquivos estaticos em producao
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -118,8 +121,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')      #ALG: Definicao do diretorio raiz dos arquivos estaticos para producao
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ALG: Definicao da URL de redirecionamento apos logout na secao de autenticacao do Django administrativo
+LOGOUT_REDIRECT_URL = 'index'

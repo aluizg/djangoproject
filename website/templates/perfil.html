@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil</title>
+</head>
+<body>
+    <h1>Perfil do colaborador</h1>
+    <p><strong>Nome:</strong> {{ colaborador.nome }}</p>
+    <p><strong>Email:</strong> {{ colaborador.email }}</p>
+    <p><strong>Telefone:</strong> {{ colaborador.telefone }}</p>
+    <br>
+    <p><a href="{% url 'colaborador' %}">voltar</a></p>
+</body>
+</html>

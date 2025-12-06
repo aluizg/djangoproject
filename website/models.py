@@ -7,6 +7,7 @@ class Empreendimento(models.Model):
     endereco = models.CharField('Endereco', max_length=200)
     status = models.BooleanField('Ativo', default=True)
 
+    # ALG: Representacao em string do objeto
     def __str__(self):
         return self.nome
 

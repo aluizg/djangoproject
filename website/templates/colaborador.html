@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ titulo }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{{ info }}</h1>
+    <div class="header">
+        <div class="banner_img">
+            <img src="{% static 'images/people.png' %}" alt="People" style="width:42px;height:42px;">
+        </div>
+        <div class="banner_text">
+            <h2>{{ descricao }}</h2>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+        </tr>
+        {% for colaborador in colaboradores %}
+        <tr>
+            <td><a href="{% url 'perfil' colaborador.id %}">{{ colaborador.nome }}</a></td>
+            <td>{{ colaborador.email }}</td>
+            <td>{{ colaborador.telefone }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button onclick="teste();">Teste JS</button>
+
+    <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+
+</body>
+</html>

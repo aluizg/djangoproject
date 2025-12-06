@@ -1,0 +1,21 @@
+body {
+    background-color: #341256;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.header {
+  display: flex; /* Ativa o Flexbox */
+}
+.banner_img {
+  padding: 10px;
+}
+. banner_texto {
+  width: 90%; /* Ocupa a outra metade do container */
+
+}
